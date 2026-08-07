@@ -7,8 +7,11 @@
 %undefine _annotated_build
 
 # Shares Name: apparmor with the main spec - caused a debuginfo Name
-# collision on Rakuos's fork of this spec. Disabled defensively.
+# collision on Rakuos's fork of this spec, only on EL10 CI. Fedora
+# branches build fine with debuginfo enabled, so only disable it there.
+%if 0%{?rhel}
 %global debug_package %{nil}
+%endif
 
 Name:           apparmor
 Version:        5.0.2
